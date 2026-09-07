@@ -1,1 +1,299 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>SOMARK Camera</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #17202a;
+}
+
+header {
+    background: #111827;
+    color: white;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 12px;
+    opacity: .7;
+    margin-top: 4px;
+}
+
+.settings {
+    border: 0;
+    background: #374151;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 13px;
+    font-size: 18px;
+}
+
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+.page-title {
+    margin-bottom: 20px;
+}
+
+.page-title h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.page-title p {
+    margin: 6px 0 0;
+    color: #6b7280;
+}
+
+.camera-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+}
+
+.camera-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+
+.camera-header {
+    padding: 15px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.camera-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.status {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.online {
+    color: #16a34a;
+}
+
+.offline {
+    color: #dc2626;
+}
+
+.video {
+    aspect-ratio: 16 / 9;
+    background: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    position: relative;
+}
+
+.video-icon {
+    font-size: 42px;
+    opacity: .6;
+}
+
+.video-text {
+    position: absolute;
+    bottom: 15px;
+    font-size: 12px;
+    opacity: .7;
+}
+
+.camera-footer {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.camera-type {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.fullscreen {
+    border: 0;
+    background: #eef2f7;
+    border-radius: 9px;
+    padding: 8px 11px;
+    cursor: pointer;
+}
+
+.add-card {
+    min-height: 230px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #64748b;
+    background: #fff;
+}
+
+.add-icon {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.info {
+    margin-top: 25px;
+    background: white;
+    border-radius: 15px;
+    padding: 18px;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 14px;
+    }
+
+    .page-title h1 {
+        font-size: 24px;
+    }
+
+    .camera-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+        <div>
+            <div class="logo">📷 SOMARK Camera</div>
+            <div class="subtitle">Camera management & live monitoring</div>
+        </div>
+
+        <button class="settings" onclick="showInfo()">⚙️</button>
+    </div>
+</header>
+
+<main>
+
+    <div class="page-title">
+        <h1>Mijn camera's</h1>
+        <p>Live overzicht van je camera's</p>
+    </div>
+
+    <div class="camera-grid">
+
+        <!-- MIBAO 1 -->
+        <div class="camera-card">
+            <div class="camera-header">
+                <div class="camera-name">Mibao 1</div>
+                <div class="status online">● Verbonden</div>
+            </div>
+
+            <div class="video" id="video1">
+                <div class="video-icon">📹</div>
+                <div class="video-text">Live stream wordt voorbereid...</div>
+            </div>
+
+            <div class="camera-footer">
+                <div class="camera-type">Mibao • RTSP</div>
+
+                <button class="fullscreen"
+                        onclick="fullscreen('video1')">
+                    ⛶
+                </button>
+            </div>
+        </div>
+
+
+        <!-- MIBAO 2 -->
+        <div class="camera-card">
+            <div class="camera-header">
+                <div class="camera-name">Mibao 2</div>
+                <div class="status offline">● Nog niet ingesteld</div>
+            </div>
+
+            <div class="video" id="video2">
+                <div class="video-icon">📹</div>
+                <div class="video-text">Camera wordt later toegevoegd</div>
+            </div>
+
+            <div class="camera-footer">
+                <div class="camera-type">Mibao</div>
+
+                <button class="fullscreen"
+                        onclick="fullscreen('video2')">
+                    ⛶
+                </button>
+            </div>
+        </div>
+
+
+        <!-- MIBAO 3 -->
+        <div class="camera-card">
+            <div class="camera-header">
+                <div class="camera-name">Mibao 3</div>
+                <div class="status offline">● Nog niet ingesteld</div>
+            </div>
+
+            <div class="video" id="video3">
+                <div class="video-icon">📹</div>
+                <div class="video-text">Camera wordt later toegevoegd</div>
+            </div>
+
+            <div class="camera-footer">
+                <div class="camera-type">Mibao</div>
+
+                <button class="fullscreen"
+                        onclick="fullscreen('video3')">
+                    ⛶
+                </button>
+            </div>
+        </div>
+
+
+        <!-- CAMERA TOEVOE
