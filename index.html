@@ -22,9 +22,6 @@ header {
     background: #111827;
     color: white;
     padding: 20px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
 }
 
 .header-inner {
@@ -121,6 +118,7 @@ main {
     justify-content: center;
     color: #9ca3af;
     position: relative;
+    flex-direction: column;
 }
 
 .video-icon {
@@ -129,10 +127,11 @@ main {
 }
 
 .video-text {
-    position: absolute;
-    bottom: 15px;
-    font-size: 12px;
+    margin-top: 12px;
+    font-size: 13px;
     opacity: .7;
+    text-align: center;
+    padding: 0 15px;
 }
 
 .camera-footer {
@@ -140,6 +139,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 
 .camera-type {
@@ -147,29 +147,28 @@ main {
     font-size: 13px;
 }
 
+.button-group {
+    display: flex;
+    gap: 8px;
+}
+
+.camera-button,
 .fullscreen {
     border: 0;
-    background: #eef2f7;
     border-radius: 9px;
-    padding: 8px 11px;
+    padding: 9px 12px;
     cursor: pointer;
+    font-size: 14px;
 }
 
-.add-card {
-    min-height: 230px;
-    border: 2px dashed #cbd5e1;
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: #64748b;
-    background: #fff;
+.camera-button {
+    background: #f97316;
+    color: white;
 }
 
-.add-icon {
-    font-size: 36px;
-    margin-bottom: 8px;
+.fullscreen {
+    background: #eef2f7;
+    color: #17202a;
 }
 
 .info {
@@ -211,10 +210,14 @@ footer {
     <div class="header-inner">
         <div>
             <div class="logo">📷 SOMARK Camera</div>
-            <div class="subtitle">Camera management & live monitoring</div>
+            <div class="subtitle">
+                Camera management & live monitoring
+            </div>
         </div>
 
-        <button class="settings" onclick="showInfo()">⚙️</button>
+        <button class="settings" onclick="showInfo()">
+            ⚙️
+        </button>
     </div>
 </header>
 
@@ -229,71 +232,226 @@ footer {
 
         <!-- MIBAO 1 -->
         <div class="camera-card">
+
             <div class="camera-header">
-                <div class="camera-name">Mibao 1</div>
-                <div class="status online">● Verbonden</div>
+                <div class="camera-name">
+                    Mibao 1
+                </div>
+
+                <div class="status online">
+                    ● Verbonden
+                </div>
             </div>
 
             <div class="video" id="video1">
-                <div class="video-icon">📹</div>
-                <div class="video-text">Live stream wordt voorbereid...</div>
+
+                <div class="video-icon">
+                    📹
+                </div>
+
+                <div class="video-text">
+                    RTSP-camera gevonden
+                </div>
+
             </div>
 
             <div class="camera-footer">
-                <div class="camera-type">Mibao • RTSP</div>
 
-                <button class="fullscreen"
+                <div class="camera-type">
+                    Mibao • RTSP
+                </div>
+
+                <div class="button-group">
+
+                    <button
+                        class="camera-button"
+                        onclick="openMibao()">
+                        ▶ Live
+                    </button>
+
+                    <button
+                        class="fullscreen"
                         onclick="fullscreen('video1')">
-                    ⛶
-                </button>
+                        ⛶
+                    </button>
+
+                </div>
+
             </div>
+
         </div>
 
 
         <!-- MIBAO 2 -->
         <div class="camera-card">
+
             <div class="camera-header">
-                <div class="camera-name">Mibao 2</div>
-                <div class="status offline">● Nog niet ingesteld</div>
+
+                <div class="camera-name">
+                    Mibao 2
+                </div>
+
+                <div class="status offline">
+                    ● Nog niet ingesteld
+                </div>
+
             </div>
 
             <div class="video" id="video2">
-                <div class="video-icon">📹</div>
-                <div class="video-text">Camera wordt later toegevoegd</div>
+
+                <div class="video-icon">
+                    📹
+                </div>
+
+                <div class="video-text">
+                    Camera wordt later toegevoegd
+                </div>
+
             </div>
 
             <div class="camera-footer">
-                <div class="camera-type">Mibao</div>
 
-                <button class="fullscreen"
-                        onclick="fullscreen('video2')">
+                <div class="camera-type">
+                    Mibao
+                </div>
+
+                <button
+                    class="fullscreen"
+                    onclick="fullscreen('video2')">
                     ⛶
                 </button>
+
             </div>
+
         </div>
 
 
         <!-- MIBAO 3 -->
         <div class="camera-card">
+
             <div class="camera-header">
-                <div class="camera-name">Mibao 3</div>
-                <div class="status offline">● Nog niet ingesteld</div>
+
+                <div class="camera-name">
+                    Mibao 3
+                </div>
+
+                <div class="status offline">
+                    ● Nog niet ingesteld
+                </div>
+
             </div>
 
             <div class="video" id="video3">
-                <div class="video-icon">📹</div>
-                <div class="video-text">Camera wordt later toegevoegd</div>
+
+                <div class="video-icon">
+                    📹
+                </div>
+
+                <div class="video-text">
+                    Camera wordt later toegevoegd
+                </div>
+
             </div>
 
             <div class="camera-footer">
-                <div class="camera-type">Mibao</div>
 
-                <button class="fullscreen"
-                        onclick="fullscreen('video3')">
+                <div class="camera-type">
+                    Mibao
+                </div>
+
+                <button
+                    class="fullscreen"
+                    onclick="fullscreen('video3')">
                     ⛶
                 </button>
+
             </div>
+
         </div>
 
+    </div>
 
-        <!-- CAMERA TOEVOE
+
+    <div class="info">
+
+        <strong>SOMARK Camera</strong><br><br>
+
+        Mibao 1 gebruikt momenteel de volgende
+        lokale RTSP-verbinding:
+
+        <br><br>
+
+        <code>
+        rtsp://192.168.1.6:554/realmonitor
+        </code>
+
+        <br><br>
+
+        De knop <strong>Live</strong> probeert de RTSP-stream
+        op het apparaat te openen.
+
+        <br><br>
+
+        Dit is voorlopig een test. Later bouwen we een
+        veilige streaminglaag zodat meerdere gsm's de
+        camera via SOMARK kunnen bekijken.
+
+    </div>
+
+</main>
+
+
+<footer>
+    SOMARK Camera • privé camerabeheer
+</footer>
+
+
+<script>
+
+function openMibao() {
+
+    const rtspUrl =
+        "rtsp://192.168.1.6:554/realmonitor";
+
+    /*
+     * Android kan een RTSP-link doorgeven
+     * aan een geschikte videospeler zoals VLC.
+     */
+    window.location.href = rtspUrl;
+}
+
+
+function fullscreen(id) {
+
+    const element =
+        document.getElementById(id);
+
+    if (!element) {
+        return;
+    }
+
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    }
+    else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    }
+}
+
+
+function showInfo() {
+
+    alert(
+        "SOMARK Camera\n\n" +
+        "Mibao 1 is momenteel gekoppeld " +
+        "aan de RTSP-testverbinding.\n\n" +
+        "De volgende stap is een veilige " +
+        "streamingverbinding voor meerdere gsm's."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
